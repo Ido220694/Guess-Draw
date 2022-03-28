@@ -52,12 +52,6 @@ io.on('connection', socket => {
     })
 
 
-    socket.on('sendMessage', (payload, callback) => {
-        const user = getUser(socket.id)
-        io.to(user.room).emit('message', {user: user.name, text: payload.message})
-        callback()
-    })
-
     socket.on('disconnect', () => {
         const user = removeUser(socket.id)
         if(user)
